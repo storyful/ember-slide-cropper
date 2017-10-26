@@ -1,0 +1,14 @@
+<button class="{{NS}}--minus" {{action "minus"}}> - </button>
+<button class="{{NS}}--plus" {{action "plus"}}> + </button>
+
+<div class="{{NS}}--wrapper">
+  <div class="{{NS}}--container" data-slide-crop-container="true">
+    <div class="{{NS}}--handle" data-slide-crop-handle="true" style={{handleStyle}}>
+      {{handleLeft}}
+    </div>
+  </div>
+
+  <div class="{{NS}}--line"></div>
+</div>
+
+{{yield}}
