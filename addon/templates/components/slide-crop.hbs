@@ -12,11 +12,7 @@
 </div>
 
 <div class="{{NS}}--controls">
-  {{slide-crop-slider value=zoom min="100" max="300"}}
+  {{slide-crop-slider value=zoom min=minZoom max=maxZoom}}
 </div>
 
-{{yield
-  (hash
-    cropAction=(action "crop")
-  )
-}}
+{{yield (hash cropAction=(action "crop"))}}

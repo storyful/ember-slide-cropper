@@ -14,9 +14,15 @@ export default Component.extend({
 
   classNames: [NS],
 
-  loading: false,
+  // default attributes
 
   zoom: 100,
+  minZoom: 100,
+  maxZoom: 300,
+
+  // internal
+
+  loading: false,
 
   top: 0,
   left: 0,
@@ -61,6 +67,7 @@ export default Component.extend({
   onImageLoad(){
     this.set('loading', false);
     this.updateImageSize();
+    this.updateZoom();
   },
 
   reset(){
@@ -68,7 +75,6 @@ export default Component.extend({
     this.set('height', null);
     this.set('top', 0);
     this.set('left', 0);
-    this.set('zoom', 100);
   },
 
   updateImageSize(){
@@ -108,13 +114,7 @@ export default Component.extend({
     this.set('height', newSize.height);
   },
 
-  /* preview */
-
-  didImageUpdated: observer('image', function(){
-    this.initImage();
-  }),
-
-  didZoomUpdated: observer('zoom', function(){
+  updateZoom(){
     let style = {};
     let $preview = this.$('[data-slide-crop-preview]');
     let zoom  = this.get('zoom') / 100;
@@ -142,6 +142,16 @@ export default Component.extend({
 
     this.set('width', style.width);
     this.set('height', style.height);
+  },
+
+  /* preview */
+
+  didImageUpdated: observer('image', function(){
+    this.initImage();
+  }),
+
+  didZoomUpdated: observer('zoom', function(){
+    this.updateZoom();
   }),
 
   didCropUpdated: observer('zoom', 'left', 'top', 'clipLeft', 'clipTop', 'clipWidth', 'clipHeight', function(){

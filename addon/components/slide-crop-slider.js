@@ -30,7 +30,16 @@ export default Component.extend({
 
   didInsertElement(){
     this.updateSizes();
+    this.updateHandle();
     this.initDraggable();
+  },
+
+  updateHandle(){
+    let min = parseFloat(this.get('min'));
+    let max = parseFloat(this.get('max'));
+    let value = parseFloat(this.get('value'));
+
+    this.set('handle', ((value - min) / (max - min)));
   },
 
   updateSizes(){
@@ -38,18 +47,13 @@ export default Component.extend({
   },
 
   initDraggable(){
-    let self = this;
-    let $handle = this.$('[data-slide-crop-handle]');
-
-    $handle.draggable({
+    this.$('[data-slide-crop-handle]').draggable({
       containment: 'parent',
       axis: 'x',
-      helper: function(){
-        return '<span></span>';
-      },
-      drag: function( event, ui ) {
-        let $container = self.$('[data-slide-crop-container]');
-        self.set('handle', ui.position.left / $container.width());
+      helper: () => '<span></span>',
+      drag: ( event, ui ) => {
+        let $container = this.$('[data-slide-crop-container]');
+        this.set('handle', ui.position.left / $container.width());
       }
     });
   },
@@ -69,4 +73,5 @@ export default Component.extend({
 
     this.set('value', value);
   })
+
 });
