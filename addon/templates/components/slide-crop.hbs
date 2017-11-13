@@ -15,4 +15,8 @@
   {{slide-crop-slider value=zoom min="100" max="300"}}
 </div>
 
-{{yield}}
+{{yield
+  (hash
+    cropAction=(action "crop")
+  )
+}}

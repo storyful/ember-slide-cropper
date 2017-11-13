@@ -1,5 +1,6 @@
 import Component from '@ember/component';
 import { computed, observer } from '@ember/object';
+import { run } from '@ember/runloop';
 import { htmlSafe } from '@ember/string';
 import layout from '../templates/components/slide-crop';
 
@@ -24,15 +25,7 @@ export default Component.extend({
 
   actions: {
     crop(){
-      this.sendAction('onCrop', {
-        zoom:   this.get('zoom'),
-        left:   this.get('left'),
-        top:    this.get('top'),
-        clip_x: this.get('clipLeft'),
-        clip_y: this.get('clipTop'),
-        clip_w: this.get('clipWidth'),
-        clip_h: this.get('clipHeight')
-      });
+      this.sendAction('onCrop', this.getCropObject());
     }
   },
 
@@ -151,6 +144,10 @@ export default Component.extend({
     this.set('height', style.height);
   }),
 
+  didCropUpdated: observer('zoom', 'left', 'top', 'clipLeft', 'clipTop', 'clipWidth', 'clipHeight', function(){
+    run.debounce(this, this.sendUpdate, 500);
+  }),
+
   /* drag limits */
 
   leftLimit: computed('width', 'height', function(){
@@ -209,5 +206,20 @@ export default Component.extend({
     return (this.get('cropHeight') / this.get('height')) * this.get('imageHeight');
   }),
 
+  sendUpdate(){
+    this.sendAction('onUpdate', this.getCropObject())
+  },
+
+  getCropObject(){
+    return {
+      zoom:   this.get('zoom'),
+      left:   this.get('left'),
+      top:    this.get('top'),
+      clip_x: this.get('clipLeft'),
+      clip_y: this.get('clipTop'),
+      clip_w: this.get('clipWidth'),
+      clip_h: this.get('clipHeight')
+    }
+  }
 
 });

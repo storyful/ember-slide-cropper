@@ -1,6 +1,16 @@
 # ember-slide-cropper
 
-This README outlines the details of collaborating on this Ember addon.
+```hbs
+{{slide-crop
+    image="images/sample.jpg"
+    cropWidth="400"
+    cropHeight="300"
+    onUpdate="doSomething"}}
+```
+
+Events:
+
+* onUpdate
 
 ## Installation
 
