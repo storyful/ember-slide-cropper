@@ -221,15 +221,15 @@ export default Component.extend({
   },
 
   getCropObject(){
+    let zoom = this.get('zoom') / 100;
+
     return {
-      zoom:   this.get('zoom'),
-      left:   this.get('left'),
-      top:    this.get('top'),
-      clip_x: this.get('clipLeft'),
-      clip_y: this.get('clipTop'),
-      clip_w: this.get('clipWidth'),
-      clip_h: this.get('clipHeight')
-    }
+      zoom,
+      x: this.get('clipLeft') / zoom,
+      y: this.get('clipTop') / zoom,
+      width: this.get('clipWidth') / zoom,
+      height: this.get('clipHeight') / zoom
+    };
   }
 
 });
