@@ -68,6 +68,7 @@ export default Component.extend({
     this.set('loading', false);
     this.updateImageSize();
     this.updateZoom();
+    this.sendAction('onLoad', this.getCropObject());
   },
 
   reset(){
