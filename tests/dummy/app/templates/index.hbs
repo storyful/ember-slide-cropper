@@ -1,9 +1,20 @@
 <h2 id="title">ember-slide-crop</h2>
 
-{{slide-crop
-    image="images/sample.jpg"
-    cropWidth=400
-    cropHeight=300
-    zoom=200
-    onLoad="doSomething"
-    onUpdate="doSomething"}}
+<div class="grid">
+  <div class="crop-col">
+    {{slide-crop
+        image="images/sample.jpg"
+        cropWidth=400
+        cropHeight=300
+        zoom=200
+        onLoad="doSomething"
+        onUpdate="doSomething"}}
+  </div>
+
+  <div class="preview-col">
+    <div class="preview">
+      <div class="preview--crop" style={{previewStyles}}></div>
+      <img src="images/sample.jpg" alt="Sample Preview">
+    </div>
+  </div>
+</div>

@@ -226,10 +226,10 @@ export default Component.extend({
 
     return {
       zoom,
-      x: this.get('clipLeft') / zoom,
-      y: this.get('clipTop') / zoom,
-      width: this.get('clipWidth') / zoom,
-      height: this.get('clipHeight') / zoom
+      x: this.get('clipLeft'),
+      y: this.get('clipTop'),
+      width: this.get('clipWidth'),
+      height: this.get('clipHeight')
     };
   }
 

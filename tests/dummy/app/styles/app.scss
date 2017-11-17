@@ -1,0 +1,22 @@
+.grid {
+  display: flex;
+  flex-direction: row;
+}
+
+.preview {
+  background: #ccc;
+  position: relative;
+}
+
+.preview img {
+  position: absolute;
+}
+
+.preview--crop {
+  transition: all 1s;
+  position: absolute;
+  border: solid 3px white;
+  top: 0px;
+  left: 0px;
+  z-index: 10;
+}
