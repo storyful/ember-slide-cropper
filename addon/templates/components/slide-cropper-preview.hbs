@@ -1,0 +1,16 @@
+<div class="{{NS}} {{if loading 'invisible'}}" style={{previewStyle}}>
+  <div class="{{NS}}--bg">
+    <img src={{image}} alt="Image Crop Preview" style={{imageStyle}}>
+  </div>
+
+  <div class="{{NS}}--mask" style={{previewStyle}}>
+    <img src={{image}}
+      class="{{NS}}--image"
+      style={{imageStyle}}
+      alt="Crop Preview"
+      data-slide-cropper-preview="true">
+
+  </div>
+</div>
+
+{{yield}}

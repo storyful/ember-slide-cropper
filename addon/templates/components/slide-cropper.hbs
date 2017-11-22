@@ -1,0 +1,41 @@
+<div class="{{NS}}--inner">
+  {{#if preview}}
+    <div class="{{NS}}--preview">
+      {{slide-cropper-preview
+          cropWidth=cropWidth
+          cropHeight=cropHeight
+          zoom=zoom
+          controls=controls
+          image=image
+          onLoad="onLoad"
+          onUpdate="onUpdate"}}
+    </div>
+  {{/if}}
+
+  {{#if controls}}
+    <div class="{{NS}}--controls">
+      {{slide-cropper-slider
+          value=zoom
+          min=minZoom
+          max=maxZoom}}
+    </div>
+  {{/if}}
+</div>
+
+{{yield
+  (hash
+    preview=(component "slide-cropper-preview"
+      cropWidth=cropWidth
+      cropHeight=cropHeight
+      zoom=zoom
+      controls=controls
+      image=image
+      onLoad=(action "onLoad")
+      onUpdate=(action "onUpdate"))
+
+    controls=(component "slide-cropper-slider"
+      value=zoom
+      min=minZoom
+      max=maxZoom)
+  )
+}}

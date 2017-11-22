@@ -2,9 +2,9 @@ import Component from '@ember/component';
 import { computed, observer } from '@ember/object';
 import { run } from '@ember/runloop';
 import { htmlSafe } from '@ember/string';
-import layout from '../templates/components/slide-crop';
+import layout from '../templates/components/slide-cropper-preview';
 
-const NS = 'slide-crop';
+const NS = 'slide-cropper-preview';
 
 export default Component.extend({
 
@@ -14,16 +14,7 @@ export default Component.extend({
 
   classNames: [NS],
 
-  // default attributes
-
-  zoom: 100,
-  minZoom: 100,
-  maxZoom: 300,
-
-  // internal
-
   loading: false,
-
   top: 0,
   left: 0,
   width: null,
@@ -42,7 +33,7 @@ export default Component.extend({
 
   initDraggable(){
     let self = this;
-    let $preview = this.$('[data-slide-crop-preview]');
+    let $preview = this.$('[data-slide-cropper-preview]');
 
     $preview.draggable({
       helper: function(){
@@ -56,7 +47,7 @@ export default Component.extend({
   },
 
   initImage(){
-    let $preview = this.$('[data-slide-crop-preview]');
+    let $preview = this.$('[data-slide-cropper-preview]');
 
     this.set('loading', true);
     this.reset();
@@ -79,7 +70,7 @@ export default Component.extend({
   },
 
   updateImageSize(){
-    let $preview    = this.$('[data-slide-crop-preview]');
+    let $preview    = this.$('[data-slide-cropper-preview]');
 
     let crop       = { width: this.get('cropWidth'), height: this.get('cropHeight') };
     let original   = { width: $preview.width(), height: $preview.height() };
@@ -117,7 +108,7 @@ export default Component.extend({
 
   updateZoom(){
     let style = {};
-    let $preview = this.$('[data-slide-crop-preview]');
+    let $preview = this.$('[data-slide-cropper-preview]');
     let zoom  = this.get('zoom') / 100;
 
     // calculate new size
@@ -226,9 +217,9 @@ export default Component.extend({
 
     return {
       zoom,
-      x: this.get('clipLeft'),
-      y: this.get('clipTop'),
-      width: this.get('clipWidth'),
+      x:      this.get('clipLeft'),
+      y:      this.get('clipTop'),
+      width:  this.get('clipWidth'),
       height: this.get('clipHeight')
     };
   }
