@@ -1,9 +1,9 @@
 import Component from '@ember/component';
 import { computed, observer } from '@ember/object';
 import { htmlSafe } from '@ember/string';
-import layout from '../templates/components/slide-crop-slider';
+import layout from '../templates/components/slide-cropper-slider';
 
-const NS = "slide-crop-slider";
+const NS = "slide-cropper-slider";
 
 export default Component.extend({
 
@@ -43,16 +43,16 @@ export default Component.extend({
   },
 
   updateSizes(){
-    this.set('handleWidth', this.$('[data-slide-crop-handle]').width());
+    this.set('handleWidth', this.$('[data-slide-cropper-handle]').width());
   },
 
   initDraggable(){
-    this.$('[data-slide-crop-handle]').draggable({
+    this.$('[data-slide-cropper-handle]').draggable({
       containment: 'parent',
       axis: 'x',
       helper: () => '<span></span>',
       drag: ( event, ui ) => {
-        let $container = this.$('[data-slide-crop-container]');
+        let $container = this.$('[data-slide-cropper-container]');
         this.set('handle', ui.position.left / $container.width());
       }
     });

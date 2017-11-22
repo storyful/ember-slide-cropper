@@ -5,7 +5,7 @@ import { htmlSafe } from '@ember/string';
 export default Controller.extend({
 
   actions: {
-    doSomething(data){
+    updateCropAttrs(data){
       this.set('cropAttrs', data);
     }
   },
